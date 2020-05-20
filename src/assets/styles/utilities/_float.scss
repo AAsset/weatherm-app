@@ -1,0 +1,17 @@
+// Float
+
+.float-left { float: left !important; }
+.float-right { float: right !important; }
+.float-none { float: none !important; }
+
+@each $prop, $abbrev in (right: r, top: t, left: l, bottom: b) {
+  @each $size, $length in $spacers {
+    .#{$abbrev}-#{$size} { #{$prop}: #{$length}px !important; }
+  }
+
+  @each $size, $length in $spacers {
+    @if $size != 0 {
+      .#{$abbrev}-#{$size} { #{$prop}: #{-$length}px !important; }
+    }
+  }
+}

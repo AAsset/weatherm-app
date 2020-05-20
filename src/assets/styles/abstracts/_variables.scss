@@ -1,0 +1,88 @@
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+$spacer: 1px !default;
+$spacers: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$spacers: map-merge(
+  (
+    0: 0,
+    5: 5,
+    10: 10,
+    15: 15,
+    20: 20,
+    25: 25,
+    30: 30,
+    35: 35,
+    40: 40,
+    45: 45,
+    50: 50,
+    55: 55,
+    60: 60,
+    65: 65,
+    70: 70,
+    75: 75,
+    80: 80,
+    85: 85,
+    90: 90,
+    95: 95,
+    100: 100
+  ),
+  $spacers
+);
+
+// This variable affects the `.h-*` and `.w-*` classes.
+$sizes: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$sizes: map-merge(
+  (
+    25: 25%,
+    50: 50%,
+    75: 75%,
+    100: 100%,
+    auto: auto
+  ),
+  $sizes
+);
+
+// This variable affects the `.z-*` classes.
+$zindexes: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$zindexes: map-merge(
+  (
+    0: 0,
+    25: 25,
+    50: 50,
+    75: 75,
+    100: 100,
+    500: 500,
+    1000: 1000,
+    auto: auto
+  ),
+  $zindexes
+);
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+) !default;
+
+@include _assert-ascending($grid-breakpoints, "$grid-breakpoints");
+@include _assert-starts-at-zero($grid-breakpoints, "$grid-breakpoints");
+
+$displays: none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex !default;
+
+$overflows: auto, hidden !default;
+
+$positions: static, relative, absolute, fixed, sticky !default;

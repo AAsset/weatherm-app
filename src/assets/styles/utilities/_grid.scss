@@ -1,0 +1,161 @@
+$breakpoints: (sm: 0, md: 768px, lg: 960px, elg: 1439px);
+$container-sizes: (sm: 100%, md: 768px, lg: 920px, elg: 1408px);
+$container-items: (sm: 12, md: 12, lg: 12, elg: 12);
+$container-indent: (sm: 12px, md: 12px, lg: 12px, elg: 12px);
+
+%col-properties {
+  display: flex;
+  box-sizing: inherit;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+
+  &.__align-start {
+    align-items: start;
+  }
+
+  &.__align-center {
+    align-items: center;
+  }
+
+  &.__align-end {
+    align-items: flex-end;
+  }
+
+  &.__justify-center {
+    justify-content: center;
+  }
+
+  &.__justify-end {
+    justify-content: flex-end;
+  }
+
+  &.__justify-beetwen {
+    justify-content: space-between;
+  }
+
+  &.__column {
+    flex-direction: column;
+  }
+
+  &.__full-h {
+    height: 100%;
+  }
+
+  &.__no-indent {
+    padding: 0;
+  }
+
+  &.__no-wrap {
+    flex-wrap: nowrap;
+  }
+}
+
+%container {
+  box-sizing: border-box;
+  margin: auto;
+}
+
+.container {
+  @extend %container;
+
+  &.__mw800 {
+    max-width: 800px;
+  }
+
+  &.__no-indent {
+    padding: 0;
+  }
+
+  &-fluid {
+    @extend %container;
+
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.row {
+  display: flex;
+  box-sizing: inherit;
+  flex-flow: wrap;
+
+  &.__relative {
+    position: relative;
+  }
+
+  &.__no-wrap {
+    flex-wrap: nowrap;
+  }
+
+  &.__align-center {
+    align-items: center;
+  }
+
+  &.__align-start {
+    align-items: flex-start;
+  }
+
+  &.__full-h {
+    height: 100%;
+  }
+}
+
+@mixin break($size) {
+  @media (min-width: map-get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+@each $key, $value in $container-sizes {
+  .container {
+    @include break($key) {
+      width: $value;
+    }
+  }
+}
+
+@each $key, $value in $container-indent {
+  .container,
+  .container-fluid {
+    @include break($key) {
+      padding-right: $value;
+      padding-left: $value;
+    }
+  }
+
+  .row {
+    @include break($key) {
+      margin-right: -$value;
+      margin-left: -$value;
+    }
+  }
+}
+
+@each $key, $items in $container-items {
+  @for $i from 1 through $items {
+    .col-#{$key}-#{$i} {
+      @extend %col-properties;
+    }
+  }
+
+  @each $key-indent, $indent-value in $container-indent {
+    @include break($key) {
+      @if $key == $key-indent {
+        @for $i from 1 through $items {
+          .col-#{$key}-#{$i} {
+            flex-basis: $i/$items * 100%;
+            padding-right: $indent-value;
+            padding-left: $indent-value;
+          }
+        }
+
+        @for $i from 0 through $items {
+          .col-#{$key}-offset-#{$i} {
+            margin-left: $i/$items * 100%;
+          }
+        }
+      }
+    }
+  }
+}

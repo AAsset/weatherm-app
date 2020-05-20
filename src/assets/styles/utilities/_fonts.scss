@@ -1,0 +1,25 @@
+$ff-material-icons: 'Material UI Icons', sans-serif;
+
+@font-face {
+  font-family: 'Material UI Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material UI Icons'), url('../fonts/Material-Icons/Material UI Icons.woff2') format('woff2');
+}
+
+.material-icons {
+  display: inline-block;
+  font-family: $ff-material-icons;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  line-height: 1;
+  text-transform: none;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}

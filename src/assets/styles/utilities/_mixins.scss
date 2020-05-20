@@ -1,0 +1,32 @@
+$browsersList: (webkit-input, moz, ms-input);
+
+@mixin add-font($name, $filename, $style: normal, $weight: normal) {
+  @font-face {
+    font-family: $name;
+    font-style: $style;
+    font-weight: $weight;
+    src:
+      local($name),
+      url("/assets/fonts/#{$filename}.woff2") format("woff2"),
+      url("/assets/fonts/#{$filename}.woff") format("woff"),
+      url("/assets/fonts/#{$filename}.ttf") format("truetype");
+  }
+}
+
+@mixin for-tablet {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin for-desktop-up {
+  @media (max-width: 1268px) {
+    @content;
+  }
+}
+
+@mixin for-big-desktop {
+  @media (max-width: 1400px) {
+    @content;
+  }
+}
