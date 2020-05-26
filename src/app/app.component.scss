@@ -1,17 +1,33 @@
-.sidenav-container {
-  height: 100%;
-}
+@import "src/assets/styles/colors";
 
 .sidenav {
   width: 200px;
+
+  &-container {
+    height: 100%;
+  }
+
+  .mat-toolbar {
+    background: inherit;
+
+    &.mat-primary {
+      position: sticky;
+      z-index: 1;
+      top: 0;
+    }
+  }
 }
 
-.sidenav .mat-toolbar {
-  background: inherit;
-}
-
-.mat-toolbar.mat-primary {
-  position: sticky;
-  z-index: 1;
-  top: 0;
+.main__footer {
+  display: flex;
+  position: absolute;
+  z-index: 100;
+  bottom: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: $primary;
+  box-shadow: 0 0 2rem rgba(0, 0, 255, .1);
+  color: $white;
 }
